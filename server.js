@@ -6,6 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
+// Servir archivos estáticos desde la carpeta public
 app.use(express.static('public'));
 
 const rooms = {}; // Almacenamiento temporal de salas

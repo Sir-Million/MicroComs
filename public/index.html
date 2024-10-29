@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MicroComs</title>
-    <link rel="stylesheet" href="/style.css">
-    <script src="/script.js" defer></script>
+    <title>Chat de Video</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Botones de elección -->
     <div id="start-screen">
         <button id="createRoomButton">Crear Sala</button>
         <button id="joinRoomButton">Unirse a Sala</button>
     </div>
+    
+    <!-- Área de video y chat -->
     <div id="video-chat" style="display:none;">
         <video id="localVideo" autoplay muted></video>
         <video id="remoteVideo" autoplay></video>
+        <div id="chat">
+            <input id="messageInput" placeholder="Escribe un mensaje...">
+            <button id="sendButton">Enviar</button>
+            <div id="chatMessages"></div>
+        </div>
     </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

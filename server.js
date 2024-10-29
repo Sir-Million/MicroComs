@@ -2,12 +2,13 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const { v4: uuidv4 } = require('uuid');
+const path = require('path'); // Importa el módulo path
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
 // Servir archivos estáticos desde la carpeta public
-app.use(express.static('public/'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const rooms = {}; // Almacenamiento temporal de salas
 
@@ -19,9 +20,8 @@ app.get('/create-room', (req, res) => {
 
 // Ruta para manejar la sala
 app.get('/room/:roomId', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html'); // Sirve el archivo HTML para todas las salas
+    res.sendFile(path.join(__dirname, 'public', 'main.html')); // Sirve el archivo HTML para todas las salas
 });
-
 
 io.on('connection', (socket) => {
     socket.on('joinRoom', (roomId) => {

@@ -23,6 +23,8 @@ app.get('/room/:roomId', (req, res) => {
     res.sendFile(__dirname + '/public/normal.css'); // Sirve el mismo archivo CSS para todas las salas
     res.sendFile(__dirname + '/public/style.css'); // Sirve el mismo archivo CSS para todas las salas
     res.sendFile(__dirname + '/public/script.js'); // Sirve el mismo archivo JS para todas las salas
+    // SocketIo <script src="/socket.io/socket.io.js"></script>
+    res.sendFile(__dirname + '/public/socket.io.js');
 });
 
 io.on('connection', (socket) => {

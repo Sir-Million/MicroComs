@@ -7,7 +7,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 // Servir archivos estáticos desde la carpeta public
-app.use(express.static('public'));
+app.use(express.static('public/'));
 
 const rooms = {}; // Almacenamiento temporal de salas
 
@@ -19,14 +19,9 @@ app.get('/create-room', (req, res) => {
 
 // Ruta para manejar la sala
 app.get('/room/:roomId', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html'); // Sirve el mismo archivo HTML para todas las salas
-    res.sendFile(__dirname + '/public/normal.css'); // Sirve el mismo archivo CSS para todas las salas
-    res.sendFile(__dirname + '/public/style.css'); // Sirve el mismo archivo CSS para todas las salas
-    res.sendFile(__dirname + '/public/script.js'); // Sirve el mismo archivo JS para todas las salas
-    // SocketIo <script src="/socket.io/socket.io.js"></script>
-    res.sendFile(__dirname + '/public/socket.io/');
-    res.sendFile(__dirname + '/public/socket.io/socket.io.js');
+    res.sendFile(__dirname + '/public/index.html'); // Sirve el archivo HTML para todas las salas
 });
+
 
 io.on('connection', (socket) => {
     socket.on('joinRoom', (roomId) => {

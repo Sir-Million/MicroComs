@@ -23,6 +23,11 @@ app.get('/room/:roomId', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'main.html')); // Sirve el archivo HTML para todas las salas
 });
 
+// 404
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+});
+
 io.on('connection', (socket) => {
     socket.on('joinRoom', (roomId) => {
         if (!rooms[roomId]) {
